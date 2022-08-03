@@ -1,6 +1,7 @@
 name: New Release Version
 on:
   release:
+    types: [published]
   workflow_dispatch:
 jobs:
   Delete-Old:

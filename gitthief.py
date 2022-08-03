@@ -13,10 +13,7 @@ def download(tool: str, path: str) -> subprocess.CompletedProcess:
     BASE = ['git', 'clone']
     name = tool.split("/")[-1]
     path = [path+"/"+name]
-    if "http" not in tool:
-        url = ["https://www.github.com/"+tool]
-    else:
-        url = [tool]
+    url = ["https://www.github.com/"+tool]
     cmd = BASE+url+path
     return subprocess.run(cmd)
 
@@ -65,9 +62,9 @@ def main(args):
 
 if __name__ == "__main__":
     
-    __version__ = "1.0.0"
+    __version__ = "1.0.1"
     NAME = "GitTheif"
-    DESCRIPTION = "An installer and updater for Git repositories."
+    DESCRIPTION = "An installer and updater for Github repositories."
     try:
         TITLE = pyfiglet.figlet_format(NAME, font="stop") + f"\n{NAME} {__version__}\n\n{DESCRIPTION}\n"
     except:

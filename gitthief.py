@@ -13,12 +13,15 @@ def download(tool: str, path: str) -> subprocess.CompletedProcess:
     BASE = ['git', 'clone']
     name = tool.split("/")[-1]
     path = [path+"/"+name]
-    url = ["https://www.github.com/"+tool]
+    if "http" not in tool:
+        url = ["https://www.github.com/"+tool]
+    else:
+        url = [tool]
     cmd = BASE+url+path
     return subprocess.run(cmd)
 
 # Install Tool Requierments (Only works for Python Tools)
-def install():
+def install() -> subprocess.CompletedProcess:
     try:
         os.listdir(args.PATH)
     except FileNotFoundError:
@@ -62,9 +65,9 @@ def main(args):
 
 if __name__ == "__main__":
     
-    __version__ = "1.0.1"
+    __version__ = "1.0.2"
     NAME = "GitTheif"
-    DESCRIPTION = "An installer and updater for Github repositories."
+    DESCRIPTION = "An installer and updater for Git repositories."
     try:
         TITLE = pyfiglet.figlet_format(NAME, font="stop") + f"\n{NAME} {__version__}\n\n{DESCRIPTION}\n"
     except:
@@ -87,7 +90,11 @@ if __name__ == "__main__":
         t = tool.split('/')[-1]
         a = '--' + t
         h = 'install ' + t
-        parser.add_argument(a, action='store_true', help=h)
+        try:
+            parser.add_argument(a, action='store_true', help=h)
+        except argparse.ArgumentError:
+            print("Unable to add" + " '" + tool + "', is this a duplicate?")
+            exit()
     
     args = parser.parse_args()
 

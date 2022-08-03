@@ -7,7 +7,7 @@ Simple python script to install and update Git repositories in a directory.
 - Git Installed
 
 ### Configuration
-- TOOLS.conf - Github Repository URL's "example-user/repo" (Do not include "https://www.github.com/" this will break things.)
+- TOOLS.conf - Full Git URL's "https://www.github.com/emaple-user/repo" or "example-user/repo"
 
 ### Usage
 - Optional Install requirements
@@ -26,9 +26,9 @@ usage: gitthief.py [-h] [-A] [-U] PATH
  \_____/|_|\___)______)_| |_|\____)_|_|   
                                           
 
-GitTheif 1.0.1
+GitTheif 1.0.2
 
-An installer and updater for Github repositories.
+An installer and updater for Git repositories.
 
 positional arguments:
   PATH          path to store tools

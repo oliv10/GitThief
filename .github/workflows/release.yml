@@ -1,0 +1,22 @@
+name: New Release Version
+on:
+  release:
+  workflow_dispatch:
+jobs:
+  Delete-Old:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete Old Release Branch
+        uses: dawidd6/action-delete-branch@v3
+        with:
+          github_token: ${{github.token}}
+          branches: release
+  Make-New:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Make New Release Branch
+        uses: peterjgrainger/action-create-branch@v2.2.0
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          branch: release
